@@ -1,0 +1,38 @@
+{
+  "name": "vite-plugin-copy-dts",
+  "version": "0.0.2",
+  "type": "module",
+  "scripts": {
+    "dev": "rimraf dist &&  vite build --watch",
+    "build": "rimraf dist && vite build",
+    "release": "npm run -s build && git commit -am $npm_package_version && git tag $npm_package_version && git push --tags",
+    "release:npm": "npm publish"
+  },
+  "typings": "./dist/vite-plugin-copy-dts.d.ts",
+  "types": "./dist/vite-plugin-copy-dts.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/vite-plugin-copy-dts.js",
+      "types": "./dist/vite-plugin-copy-dts.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "author": "biggerstar",
+  "license": "MIT",
+  "description": "vite 合并 [额外的dts声明] 到指定的输出文件中",
+  "dependencies": {
+    "glob": "^10.3.3",
+    "picocolors": "^1.0.0",
+    "shelljs": "^0.8.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.3.3",
+    "@types/shelljs": "^0.8.12",
+    "rimraf": "^5.0.1",
+    "typescript": "^5.1.6",
+    "vite": "^4.4.4",
+    "vite-plugin-dts": "^3.2.0"
+  }
+}
