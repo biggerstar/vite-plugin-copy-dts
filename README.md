@@ -1,5 +1,8 @@
-vite 合并 [额外的dts声明] 到指定的输出文件中
+vite 将合并 [额外的dts声明] 到指定的输出文件中，
+解决了declare module 和 declare global 
+无法正常添加到打包d.ts目标声明文件中的问题   
 
+---
 ```javascript
 import copyDtsPlugin from 'vite-plugin-copy-dts'
 
@@ -22,6 +25,29 @@ export default defineConfig({
 })
 
 ```
+---
+
+### 文件注释标注
+
+您可以在要复制的源文件中添加`双斜杠`注释实现代码截断合并
+
+- `@copy-start` or `@start-copy` 标注目标文件的合并起点
+- `@copy-block` or `@block-copy` 在某文件中任意地方使用该标注将会忽略该文件的合并
+
+```javascript
+import {} from 'vite'
+// @copy-start   将从这里开始复制，会忽略前面的代码只复制后面代码，无标注情况下会全部复制
+// @copy-block   如果在某个文件中发现该标注，则该文件中任何代码都不会被合并
+
+function test(){}
+
+type Test = {}
+
+```
+--- 
+
+### Options Types
+
 
 ```javascript
 export type EntryFunctionOption = {
@@ -44,3 +70,7 @@ export type EntryFunctionOption = {
     }>,
 }
 ```
+---
+### Notice
+
+该插件合并过程未经过任何编译，只是简单将源文件代码原封不动追加到目标文件中

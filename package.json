@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-copy-dts",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "type": "module",
   "scripts": {
     "dev": "rimraf dist &&  vite build --watch",
