@@ -6,7 +6,7 @@
     "dev": "rimraf dist &&  vite build --watch",
     "build": "rimraf dist && vite build",
     "release": "npm run -s build && git commit -am $npm_package_version && git tag $npm_package_version && git push --tags",
-    "release:npm": "npm publish"
+    "release:npm": "npm run build && npm publish"
   },
   "typings": "./dist/vite-plugin-copy-dts.d.ts",
   "types": "./dist/vite-plugin-copy-dts.d.ts",
@@ -21,6 +21,9 @@
   ],
   "author": "biggerstar",
   "license": "MIT",
+  "repository": {
+    "url": "https://github.com/biggerstar/vite-plugin-copy-dts"
+  },
   "description": "vite 合并 [额外的dts声明] 到指定的输出文件中",
   "dependencies": {
     "glob": "^10.3.3",
