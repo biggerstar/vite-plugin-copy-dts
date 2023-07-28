@@ -14,7 +14,7 @@
 **English** | [中文](./README.zh-CN.md)
 
 Vite will merge [additional dts declarations] into the specified output file,
-Resolved the declaration module and declaration global
+Resolved the `declare module` and `declare global`
 Problem with not being able to add to the packaged d.ts target declaration file properly
 
 ---
@@ -66,12 +66,15 @@ type Test = {}
 export type EntryFunctionOption = {
     /** Specify the root directory, and the paths defined in the files will be based on this root path, which defaults to the current project environment path */
     root?: string
+    
     /** Delayed execution of merge operation, unit: ms, default: 1000ms. If you encounter packaging not merged, please try increasing this time
     * Why delay? Because this plugin was merged after other DTS packaging tools finished packaging the output file (in the vite plugin hook writeBundle),
     * This plugin cannot control the progress of other DTS packaging tools and can only merge at an appropriate time */
     delayMerge?: number,
+    
     /** log level */
     logLevel?: LogLevel,
+    
     /** Incoming file mapping array */
     files: Array<{
         /** Which file or path does it come from? Supports glob syntax */

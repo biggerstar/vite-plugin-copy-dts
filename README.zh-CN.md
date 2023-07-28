@@ -15,7 +15,7 @@
 
 
 vite 将合并 [额外的dts声明] 到指定的输出文件中，
-解决了declare module 和 declare global 
+解决了`declare module` 和 `declare global` 
 无法正常添加到打包d.ts目标声明文件中的问题   
 
 ```javascript
@@ -66,12 +66,15 @@ type Test = {}
 export type EntryFunctionOption = {
     /** 指定根目录，后面files中定义的路径会以该root路径作为基准,默认当前项目环境路径 */
     root?: string
+    
     /** 延时执行合并操作，单位ms，默认1000ms，如果遇到打包没合并，请尝试增加该时间
      * 为什么要延时？ 因为该插件是在其他dts打包工具打包完成输出文件之后(vite插件钩子writeBundle中)进行合并的，
      * 该插件无法控制其他dts打包工具进度，只能在合适时间进行合并 */
     delayMerge?: number,
+    
     /** 日志级别 */
     logLevel?: LogLevel,
+    
     /** 传入的文件映射数组 */
     files: Array<{
         /** 来自哪个文件或者路径，支持glob语法 */
